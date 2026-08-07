@@ -141,19 +141,21 @@
         /* =====================================================
            缩略图网格: 桌面4列 / 平板2列 / 手机1列
            ===================================================== */
+        /* 瀑布流布局: 图片等比例展示, 保持自身宽高比, 自适应列数 */
         .grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            columns: 4;
+            column-gap: 20px;
             padding: 20px 0;
         }
 
-        /* 卡片: 白底黑边, 悬停反转 */
+        /* 卡片: 白底黑边, 悬停反转, 避免被列拆分 */
         .card {
             display: block;
             width: 100%;
             text-align: left;
             padding: 0;
+            margin-bottom: 20px;
+            break-inside: avoid;
             border-radius: 4px;
             background: #FFFFFF;
             border: 1px solid #000;
@@ -167,22 +169,19 @@
             color: #FFFFFF;
         }
 
-        /* 缩略图区域: 固定 4:3 比例, 灰色细边框包裹 */
+        /* 缩略图区域: 等比例展示, 宽高随图片自适应, 灰色细边框包裹 */
         .thumb-wrap {
             position: relative;
             width: 100%;
-            aspect-ratio: 4 / 3;
+            min-height: 120px;   /* 图片加载前保留高度以便显示加载环 */
             border: 1px solid #d0d0d0;
             background: #FFFFFF;
             overflow: hidden;
         }
         .thumb-wrap img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
             display: block;
+            width: 100%;
+            height: auto;   /* 保持图片原始宽高比 */
         }
 
         /* 卡片底部来源信息 (12px 小号字体) */
@@ -425,12 +424,12 @@
            ===================================================== */
         @media (max-width: 900px) {
             .grid {
-                grid-template-columns: repeat(2, 1fr);
+                columns: 2;
             }
         }
         @media (max-width: 600px) {
             .grid {
-                grid-template-columns: 1fr;
+                columns: 1;
             }
             .cate-nav,
             .tag-bar {
