@@ -341,39 +341,64 @@
             color: #fff;
         }
 
-        /* 模态内容: 信息区 / 居中图片 / 操作区 三栏布局 */
+        /* 模态内容: 图片居中, 信息与操作在图片下方 */
         .modal-body {
             width: 100%;
-            max-width: 1100px;
+            max-width: 1000px;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 24px;
+            gap: 18px;
+        }
+
+        /* 原图容器: 供加载转圈图标定位 */
+        .modal-img-wrap {
+            position: relative;
+            max-width: 92vw;
         }
 
         /* 原图: 居中, 放大动画, 按比例缩放 */
         .modal-img {
-            max-width: 78vw;
-            max-height: 78vh;
+            display: block;
+            max-width: 92vw;
+            max-height: 62vh;
             object-fit: contain;
             border: 1px solid #000;
             border-radius: 4px;
             background: #fff;
             animation: modalZoomIn 0.55s cubic-bezier(0.22, 0.9, 0.28, 1.2);
-            flex-shrink: 1;
         }
         @keyframes modalZoomIn {
             0%   { transform: scale(0.55); opacity: 0; }
             100% { transform: scale(1);     opacity: 1; }
         }
 
-        /* 图片两侧栏: 信息 (左) / 操作 (右) */
-        .modal-side {
-            width: 230px;
-            flex-shrink: 0;
+        /* 图片加载中的转圈图标 (白色圆环) */
+        .modal-img-spinner {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
         }
+        .modal-img-spinner.visible {
+            display: flex;
+        }
+        .modal-img-spinner::before {
+            content: "";
+            width: 44px;
+            height: 44px;
+            border: 3px solid rgba(255, 255, 255, 0.35);
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        /* 图片下方信息区 (居中对齐) */
         .modal-info {
-            text-align: left;
+            width: 100%;
+            text-align: center;
             animation: modalSideIn 0.5s ease both;
         }
         .modal-actions-side {
@@ -402,6 +427,7 @@
         .modal-tags {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 8px;
         }
         .modal-tags .tag {
@@ -460,22 +486,14 @@
                 align-items: flex-start;
             }
             .modal-body {
-                flex-direction: column;
                 gap: 16px;
-            }
-            .modal-side {
-                width: 100%;
-                max-width: 360px;
             }
             .modal-info,
             .modal-actions-side {
                 text-align: center;
             }
-            .modal-tags {
-                justify-content: center;
-            }
             .modal-img {
-                max-height: 60vh;
+                max-height: 55vh;
                 max-width: 94vw;
             }
         }
@@ -538,8 +556,14 @@
         </button>
 
         <div class="modal-body">
-            <!-- 左侧: 壁纸信息 -->
-            <aside class="modal-side modal-info">
+            <!-- 中间: 原图 (居中, 带放大动画, 下方显示加载转圈) -->
+            <div class="modal-img-wrap">
+                <img class="modal-img" id="modalImg" alt="原图预览">
+                <div class="modal-img-spinner" id="modalImgSpinner"></div>
+            </div>
+
+            <!-- 下方: 壁纸信息 -->
+            <div class="modal-info">
                 <h2 class="modal-title" id="modalTitle"></h2>
                 <p class="modal-row">
                     <span class="modal-label">分类：</span><span id="modalCategory"></span>
@@ -552,17 +576,14 @@
                     <span class="modal-label">来源：</span><span id="modalSource"></span>
                 </p>
                 <p class="modal-row" id="modalDate" style="font-size:12px;color:#bbb;"></p>
-            </aside>
+            </div>
 
-            <!-- 中间: 原图 (居中, 带放大动画) -->
-            <img class="modal-img" id="modalImg" alt="原图预览">
-
-            <!-- 右侧: 下载操作 -->
-            <aside class="modal-side modal-actions-side">
+            <!-- 下方: 下载操作 -->
+            <div class="modal-actions-side">
                 <button class="action-btn" id="downloadBtn" disabled>
                     <i class="fa-solid fa-download"></i> <span id="downloadLabel">下载</span>
                 </button>
-            </aside>
+            </div>
         </div>
     </div>
 
@@ -616,6 +637,7 @@
 
     var modalOverlay = document.getElementById("modalOverlay");
     var modalImg = document.getElementById("modalImg");
+    var modalImgSpinner = document.getElementById("modalImgSpinner");
     var modalTitle = document.getElementById("modalTitle");
     var modalCategory = document.getElementById("modalCategory");
     var modalTags = document.getElementById("modalTags");
@@ -854,8 +876,6 @@
         currentItem = item;
         downloadReady = false;
 
-        modalImg.src = stamp(item.originalUrl, Date.now());
-        modalImg.alt = item.title;
         modalTitle.textContent = item.title;
         modalCategory.textContent = item.category;
         modalSource.textContent = item.source;
@@ -871,6 +891,14 @@
         // 重置下载按钮
         downloadLabel.textContent = "下载";
         downloadBtn.disabled = true;
+
+        // 切换图片: 先清空 src, 避免短暂显示上一张图片; 并显示转圈加载图标
+        modalImg.removeAttribute("src");
+        modalImg.alt = item.title;
+        modalImgSpinner.classList.add("visible");
+        modalImg.onload = function () { modalImgSpinner.classList.remove("visible"); };
+        modalImg.onerror = function () { modalImgSpinner.classList.remove("visible"); };
+        modalImg.src = stamp(item.originalUrl, Date.now());
 
         modalOverlay.classList.add("open");
         document.body.style.overflow = "hidden"; // 锁定背景滚动
