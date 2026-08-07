@@ -341,27 +341,63 @@
             color: #fff;
         }
 
-        /* 模态内容: 图片居中, 信息与操作在图片下方 */
+        /* 模态内容: 标题/日期在上, 分类标签来源在左, 下载按钮在右, 图片居中 */
         .modal-body {
             width: 100%;
-            max-width: 1000px;
+            max-width: 1100px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 18px;
+            gap: 14px;
+        }
+
+        /* 图片上方: 壁纸标题与添加日期 */
+        .modal-head {
+            text-align: center;
+            animation: modalSideIn 0.5s ease both;
+        }
+
+        /* 中段: 左侧信息 / 居中图片 / 右侧下载按钮 */
+        .modal-main {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 26px;
+        }
+
+        /* 左侧栏: 分类 / 标签 / 来源 */
+        .modal-side-info {
+            width: 210px;
+            flex-shrink: 0;
+            text-align: left;
+            animation: modalSideIn 0.5s ease 0.08s both;
+        }
+
+        /* 右侧栏: 下载按钮 */
+        .modal-side-action {
+            width: 210px;
+            flex-shrink: 0;
+            text-align: center;
+            animation: modalSideIn 0.5s ease 0.16s both;
+        }
+        @keyframes modalSideIn {
+            0%   { opacity: 0; transform: translateY(14px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         /* 原图容器: 供加载转圈图标定位 */
         .modal-img-wrap {
             position: relative;
-            max-width: 92vw;
+            max-width: 66vw;
+            flex-shrink: 1;
         }
 
         /* 原图: 居中, 放大动画, 按比例缩放 */
         .modal-img {
             display: block;
-            max-width: 92vw;
-            max-height: 62vh;
+            max-width: 100%;
+            max-height: 72vh;
             object-fit: contain;
             border: 1px solid #000;
             border-radius: 4px;
@@ -393,21 +429,6 @@
             border-top-color: #ffffff;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
-        }
-
-        /* 图片下方信息区 (居中对齐) */
-        .modal-info {
-            width: 100%;
-            text-align: center;
-            animation: modalSideIn 0.5s ease both;
-        }
-        .modal-actions-side {
-            text-align: center;
-            animation: modalSideIn 0.5s ease 0.12s both;
-        }
-        @keyframes modalSideIn {
-            0%   { opacity: 0; transform: translateY(14px); }
-            100% { opacity: 1; transform: translateY(0); }
         }
 
         .modal-title {
@@ -486,15 +507,25 @@
                 align-items: flex-start;
             }
             .modal-body {
-                gap: 16px;
+                gap: 12px;
             }
-            .modal-info,
-            .modal-actions-side {
+            .modal-main {
+                flex-direction: column;
+                gap: 14px;
+            }
+            .modal-side-info,
+            .modal-side-action {
+                width: 100%;
                 text-align: center;
+            }
+            .modal-side-action {
+                order: -1;   /* 手机上: 标题在上, 下载按钮紧随, 图片, 最后信息 */
+            }
+            .modal-img-wrap {
+                max-width: 94vw;
             }
             .modal-img {
                 max-height: 55vh;
-                max-width: 94vw;
             }
         }
     </style>
@@ -556,33 +587,39 @@
         </button>
 
         <div class="modal-body">
-            <!-- 中间: 原图 (居中, 带放大动画, 下方显示加载转圈) -->
-            <div class="modal-img-wrap">
-                <img class="modal-img" id="modalImg" alt="原图预览">
-                <div class="modal-img-spinner" id="modalImgSpinner"></div>
-            </div>
-
-            <!-- 下方: 壁纸信息 -->
-            <div class="modal-info">
+            <!-- 图片上方: 标题与添加日期 -->
+            <div class="modal-head">
                 <h2 class="modal-title" id="modalTitle"></h2>
-                <p class="modal-row">
-                    <span class="modal-label">分类：</span><span id="modalCategory"></span>
-                </p>
-                <p class="modal-row">
-                    <span class="modal-label">标签：</span>
-                    <span class="modal-tags" id="modalTags"></span>
-                </p>
-                <p class="modal-row">
-                    <span class="modal-label">来源：</span><span id="modalSource"></span>
-                </p>
-                <p class="modal-row" id="modalDate" style="font-size:12px;color:#bbb;"></p>
+                <p class="modal-row" id="modalDate"></p>
             </div>
 
-            <!-- 下方: 下载操作 -->
-            <div class="modal-actions-side">
-                <button class="action-btn" id="downloadBtn" disabled>
-                    <i class="fa-solid fa-download"></i> <span id="downloadLabel">下载</span>
-                </button>
+            <div class="modal-main">
+                <!-- 左侧: 分类 / 标签 / 来源 -->
+                <aside class="modal-side-info">
+                    <p class="modal-row">
+                        <span class="modal-label">分类：</span><span id="modalCategory"></span>
+                    </p>
+                    <p class="modal-row">
+                        <span class="modal-label">标签：</span>
+                        <span class="modal-tags" id="modalTags"></span>
+                    </p>
+                    <p class="modal-row">
+                        <span class="modal-label">来源：</span><span id="modalSource"></span>
+                    </p>
+                </aside>
+
+                <!-- 中间: 原图 (居中, 放大动画, 加载转圈) -->
+                <div class="modal-img-wrap">
+                    <img class="modal-img" id="modalImg" alt="原图预览">
+                    <div class="modal-img-spinner" id="modalImgSpinner"></div>
+                </div>
+
+                <!-- 右侧: 下载按钮 -->
+                <aside class="modal-side-action">
+                    <button class="action-btn" id="downloadBtn">
+                        <i class="fa-solid fa-download"></i> <span id="downloadLabel">下载</span>
+                    </button>
+                </aside>
             </div>
         </div>
     </div>
@@ -612,9 +649,6 @@
        ============================================================ */
     var PER_PAGE = 20;           // 每页显示的缩略图数量
 
-    /* 当前会话时间戳, 追加到图片 URL (?t=xxx) 以避免缓存盗链 */
-    var TIMESTAMP = Date.now();
-
     /* 应用状态: 分类 / 多标签 / 当前页 */
     var state = {
         category: "all",         // "all" 表示全部
@@ -623,7 +657,6 @@
     };
 
     var currentItem = null;      // 模态框中当前显示的图片数据
-    var downloadReady = false;   // 原图是否可下载 (跨域检测结果)
 
     /* 可复用的 DOM 引用 */
     var elCategoryNav = document.getElementById("categoryNav");
@@ -650,13 +683,6 @@
     /* ============================================================
        工具函数
        ============================================================ */
-
-    /* 为 URL 追加防缓存时间戳参数 */
-    function stamp(url, ts) {
-        var t = ts === undefined ? TIMESTAMP : ts;
-        var sep = url.indexOf("?") === -1 ? "?" : "&";
-        return url + sep + "t=" + t;
-    }
 
     /* HTML 转义, 防止注入 */
     function esc(s) {
@@ -765,12 +791,11 @@
         // ---- 渲染缩略图 ----
         var html = "";
         pageItems.forEach(function (img) {
-            var src = stamp(img.thumbnailUrl);
             html +=
                 '<button type="button" class="card" data-id="' + img.id + '">' +
                     '<div class="thumb-wrap">' +
                         '<div class="spinner"></div>' +
-                        '<img loading="lazy" src="' + src + '" alt="' + esc(img.title) + '" data-id="' + img.id + '">' +
+                        '<img loading="lazy" src="' + img.thumbnailUrl + '" alt="' + esc(img.title) + '" data-id="' + img.id + '">' +
                         '<div class="load-error">图片加载失败</div>' +
                     '</div>' +
                     '<div class="card-source">来源：' + esc(img.source) + "</div>" +
@@ -871,10 +896,9 @@
        模态框逻辑
        ============================================================ */
 
-    /* 打开模态框, 填充内容, 并探测原图是否可下载(跨域) */
+    /* 打开模态框, 填充内容, 加载并显示原图 */
     function openModal(item) {
         currentItem = item;
-        downloadReady = false;
 
         modalTitle.textContent = item.title;
         modalCategory.textContent = item.category;
@@ -888,34 +912,21 @@
         });
         modalTags.innerHTML = tagHtml || "无";
 
-        // 重置下载按钮
+        // 下载按钮始终可用, 下载原图
         downloadLabel.textContent = "下载";
-        downloadBtn.disabled = true;
+        downloadBtn.disabled = false;
 
         // 切换图片: 先清空 src, 避免短暂显示上一张图片; 并显示转圈加载图标
+        // 放大加载的是原图 (originalUrl), 而非缩略图
         modalImg.removeAttribute("src");
         modalImg.alt = item.title;
         modalImgSpinner.classList.add("visible");
         modalImg.onload = function () { modalImgSpinner.classList.remove("visible"); };
         modalImg.onerror = function () { modalImgSpinner.classList.remove("visible"); };
-        modalImg.src = stamp(item.originalUrl, Date.now());
+        modalImg.src = item.originalUrl;
 
         modalOverlay.classList.add("open");
         document.body.style.overflow = "hidden"; // 锁定背景滚动
-
-        // 跨域探测: 使用 crossorigin 加载原图, 成功则可下载, 失败则禁用
-        var probe = new Image();
-        probe.crossOrigin = "anonymous";
-        probe.onload = function () {
-            downloadReady = true;
-            downloadBtn.disabled = false;
-        };
-        probe.onerror = function () {
-            downloadReady = false;
-            downloadLabel.textContent = "无法下载";
-            downloadBtn.disabled = true;
-        };
-        probe.src = stamp(item.originalUrl, Date.now());
     }
 
     /* 关闭模态框 */
@@ -925,48 +936,17 @@
         currentItem = null;
     }
 
-    /* 下载: 经 CORS 取 blob 后通过 <a download> 触发保存 */
+    /* 下载原图: 直接使用 <a download> 触发保存 (不防盗链) */
     function handleDownload() {
         if (!currentItem) return;
-        if (!downloadReady) {
-            downloadLabel.textContent = "无法下载";
-            downloadBtn.disabled = true;
-            alert("无法下载：图片跨域或加载失败");
-            return;
-        }
 
-        downloadBtn.disabled = true;
-        downloadLabel.textContent = "下载中...";
-
-        var url = stamp(currentItem.originalUrl, Date.now());
         var filename = currentItem.title + "." + extFrom(currentItem.originalUrl);
-
-        fetch(url, { mode: "cors" })
-            .then(function (resp) {
-                if (!resp.ok) throw new Error("网络异常");
-                return resp.blob();
-            })
-            .then(function (blob) {
-                var blobUrl = URL.createObjectURL(blob);
-                // 使用 <a> 标签 download 属性 + referrerpolicy + crossorigin, 触发下载
-                var a = document.createElement("a");
-                a.href = blobUrl;
-                a.download = filename;
-                a.referrerPolicy = "no-referrer";
-                a.crossOrigin = "anonymous";
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-                URL.revokeObjectURL(blobUrl);
-                downloadBtn.disabled = false;
-                downloadLabel.textContent = "下载";
-            })
-            .catch(function () {
-                // 跨域或加载失败
-                downloadLabel.textContent = "无法下载";
-                downloadBtn.disabled = true;
-                alert("无法下载：该图片跨域或加载失败");
-            });
+        var a = document.createElement("a");
+        a.href = currentItem.originalUrl;   // 下载原图而非缩略图
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
     }
 
     /* ============================================================
