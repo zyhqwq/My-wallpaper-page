@@ -535,38 +535,22 @@
 
     <script>
     /* ============================================================
-       演示图片数据 (应替换为仓库内 images/thumb/* 与 images/original/* 的真实路径)
-       本示例使用 picsum.photos 占位图服务, seed 相同则缩略图与原图内容一致
+图片数据存储于本仓库 images/thumb/ (缩略图) 与 images/original/ (原图)
+       源文件为 /images/ 下按时间排序的 11 张真实图片, 已通过脚本统一裁剪命名。
+       title/category/tags 目前为占位元数据, 请逐张自行核改为真实描述。
        ============================================================ */
     var IMAGES = [
-        { id: 1,  title: "金色日落山脉",   category: "自然", tags: ["日落","山脉","金色","4K"],  thumbnailUrl: "https://picsum.photos/seed/wall1/400/300",  originalUrl: "https://picsum.photos/seed/wall1/1200/800",  source: "来自Unsplash", dateAdded: "2026-07-30" },
-        { id: 2,  title: "云端之城",       category: "城市", tags: ["天际线","云朵","高层"],     thumbnailUrl: "https://picsum.photos/seed/wall2/400/300",  originalUrl: "https://picsum.photos/seed/wall2/1200/800",  source: "个人摄影",     dateAdded: "2026-07-29" },
-        { id: 3,  title: "极简几何",       category: "抽象", tags: ["几何","极简","线条"],       thumbnailUrl: "https://picsum.photos/seed/wall3/400/300",  originalUrl: "https://picsum.photos/seed/wall3/1200/800",  source: "来自Unsplash", dateAdded: "2026-07-28" },
-        { id: 4,  title: "蓝色海洋",       category: "自然", tags: ["海洋","蓝色","波浪"],       thumbnailUrl: "https://picsum.photos/seed/wall4/400/300",  originalUrl: "https://picsum.photos/seed/wall4/1200/800",  source: "来自Pexels",   dateAdded: "2026-07-27" },
-        { id: 5,  title: "森林晨雾",       category: "自然", tags: ["森林","树木","雾气"],       thumbnailUrl: "https://picsum.photos/seed/wall5/400/300",  originalUrl: "https://picsum.photos/seed/wall5/1200/800",  source: "个人摄影",     dateAdded: "2026-07-26" },
-        { id: 6,  title: "夜晚霓虹街",     category: "城市", tags: ["夜景","霓虹","街道"],       thumbnailUrl: "https://picsum.photos/seed/wall6/400/300",  originalUrl: "https://picsum.photos/seed/wall6/1200/800",  source: "来自Unsplash", dateAdded: "2026-07-25" },
-        { id: 7,  title: "星光夜空",       category: "自然", tags: ["星空","银河","夜晚"],       thumbnailUrl: "https://picsum.photos/seed/wall7/400/300",  originalUrl: "https://picsum.photos/seed/wall7/1200/800",  source: "来自Unsplash", dateAdded: "2026-07-24" },
-        { id: 8,  title: "白色空间",       category: "抽象", tags: ["极简","白色","留白"],       thumbnailUrl: "https://picsum.photos/seed/wall8/400/300",  originalUrl: "https://picsum.photos/seed/wall8/1200/800",  source: "个人摄影",     dateAdded: "2026-07-23" },
-        { id: 9,  title: "沙漠沙丘",       category: "自然", tags: ["沙漠","沙丘","暖色"],       thumbnailUrl: "https://picsum.photos/seed/wall9/400/300",  originalUrl: "https://picsum.photos/seed/wall9/1200/800",  source: "来自Pexels",   dateAdded: "2026-07-22" },
-        { id: 10, title: "雨中城市",       category: "城市", tags: ["雨","街道","倒影"],         thumbnailUrl: "https://picsum.photos/seed/wall10/400/300", originalUrl: "https://picsum.photos/seed/wall10/1200/800", source: "来自Unsplash", dateAdded: "2026-07-21" },
-        { id: 11, title: "湖畔倒影",       category: "自然", tags: ["湖泊","倒影","宁静"],       thumbnailUrl: "https://picsum.photos/seed/wall11/400/300", originalUrl: "https://picsum.photos/seed/wall11/1200/800", source: "个人摄影",     dateAdded: "2026-07-20" },
-        { id: 12, title: "雪山之巅",       category: "自然", tags: ["雪山","冰雪","山脉"],       thumbnailUrl: "https://picsum.photos/seed/wall12/400/300", originalUrl: "https://picsum.photos/seed/wall12/1200/800", source: "来自Unsplash", dateAdded: "2026-07-19" },
-        { id: 13, title: "城市公路",       category: "城市", tags: ["公路","车辆","远景"],       thumbnailUrl: "https://picsum.photos/seed/wall13/400/300", originalUrl: "https://picsum.photos/seed/wall13/1200/800", source: "来自Pexels",   dateAdded: "2026-07-18" },
-        { id: 14, title: "黑白光影",       category: "抽象", tags: ["黑白","光影","阴影"],       thumbnailUrl: "https://picsum.photos/seed/wall14/400/300", originalUrl: "https://picsum.photos/seed/wall14/1200/800", source: "个人摄影",     dateAdded: "2026-07-17" },
-        { id: 15, title: "粉色花海",       category: "自然", tags: ["鲜花","粉色","花海"],       thumbnailUrl: "https://picsum.photos/seed/wall15/400/300", originalUrl: "https://picsum.photos/seed/wall15/1200/800", source: "来自Unsplash", dateAdded: "2026-07-16" },
-        { id: 16, title: "现代建筑群",     category: "建筑", tags: ["现代","玻璃","几何"],       thumbnailUrl: "https://picsum.photos/seed/wall16/400/300", originalUrl: "https://picsum.photos/seed/wall16/1200/800", source: "来自Unsplash", dateAdded: "2026-07-15" },
-        { id: 17, title: "老城小巷",       category: "城市", tags: ["小巷","历史","街道"],       thumbnailUrl: "https://picsum.photos/seed/wall17/400/300", originalUrl: "https://picsum.photos/seed/wall17/1200/800", source: "个人摄影",     dateAdded: "2026-07-14" },
-        { id: 18, title: "渐变色彩",       category: "抽象", tags: ["渐变","色彩","流动"],       thumbnailUrl: "https://picsum.photos/seed/wall18/400/300", originalUrl: "https://picsum.photos/seed/wall18/1200/800", source: "来自Pexels",   dateAdded: "2026-07-13" },
-        { id: 19, title: "山间公路",       category: "自然", tags: ["山脉","公路","绿色"],       thumbnailUrl: "https://picsum.photos/seed/wall19/400/300", originalUrl: "https://picsum.photos/seed/wall19/1200/800", source: "个人摄影",     dateAdded: "2026-07-12" },
-        { id: 20, title: "都市夜景",       category: "城市", tags: ["夜景","灯光","高层"],       thumbnailUrl: "https://picsum.photos/seed/wall20/400/300", originalUrl: "https://picsum.photos/seed/wall20/1200/800", source: "来自Unsplash", dateAdded: "2026-07-11" },
-        { id: 21, title: "冬日雪林",       category: "自然", tags: ["雪","树木","冬天"],         thumbnailUrl: "https://picsum.photos/seed/wall21/400/300", originalUrl: "https://picsum.photos/seed/wall21/1200/800", source: "来自Unsplash", dateAdded: "2026-07-10" },
-        { id: 22, title: "抽象漩涡",       category: "抽象", tags: ["漩涡","纹理","图案"],       thumbnailUrl: "https://picsum.photos/seed/wall22/400/300", originalUrl: "https://picsum.photos/seed/wall22/1200/800", source: "来自Pexels",   dateAdded: "2026-07-09" },
-        { id: 23, title: "海边灯塔",       category: "自然", tags: ["海洋","灯塔","海岸"],       thumbnailUrl: "https://picsum.photos/seed/wall23/400/300", originalUrl: "https://picsum.photos/seed/wall23/1200/800", source: "个人摄影",     dateAdded: "2026-07-08" },
-        { id: 24, title: "玻璃幕墙",       category: "建筑", tags: ["玻璃","幕墙","反射"],       thumbnailUrl: "https://picsum.photos/seed/wall24/400/300", originalUrl: "https://picsum.photos/seed/wall24/1200/800", source: "来自Unsplash", dateAdded: "2026-07-07" },
-        { id: 25, title: "夕阳剪影",       category: "自然", tags: ["日落","剪影","暖色"],       thumbnailUrl: "https://picsum.photos/seed/wall25/400/300", originalUrl: "https://picsum.photos/seed/wall25/1200/800", source: "个人摄影",     dateAdded: "2026-07-06" },
-        { id: 26, title: "极简海岸线",     category: "抽象", tags: ["极简","线条","海岸"],       thumbnailUrl: "https://picsum.photos/seed/wall26/400/300", originalUrl: "https://picsum.photos/seed/wall26/1200/800", source: "来自Pexels",   dateAdded: "2026-07-05" },
-        { id: 27, title: "白色教堂",       category: "建筑", tags: ["白色","教堂","历史"],       thumbnailUrl: "https://picsum.photos/seed/wall27/400/300", originalUrl: "https://picsum.photos/seed/wall27/1200/800", source: "来自Unsplash", dateAdded: "2026-07-04" },
-        { id: 28, title: "云海日出",       category: "自然", tags: ["日出","云海","金色"],       thumbnailUrl: "https://picsum.photos/seed/wall28/400/300", originalUrl: "https://picsum.photos/seed/wall28/1200/800", source: "来自Unsplash", dateAdded: "2026-07-03" }
+        { id: 1,  title: "壁纸 01", category: "风景", tags: ["4K","精选"], thumbnailUrl: "images/thumb/photo1.jpg",  originalUrl: "images/original/photo1.jpg",  source: "个人摄影", dateAdded: "2026-08-07" },
+        { id: 2,  title: "壁纸 02", category: "人像", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo2.jpg",  originalUrl: "images/original/photo2.jpg",  source: "个人摄影", dateAdded: "2026-08-06" },
+        { id: 3,  title: "壁纸 03", category: "城市", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo3.jpg",  originalUrl: "images/original/photo3.jpg",  source: "个人摄影", dateAdded: "2026-08-05" },
+        { id: 4,  title: "壁纸 04", category: "静物", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo4.jpg",  originalUrl: "images/original/photo4.jpg",  source: "个人摄影", dateAdded: "2026-08-04" },
+        { id: 5,  title: "壁纸 05", category: "风景", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo5.jpg",  originalUrl: "images/original/photo5.jpg",  source: "个人摄影", dateAdded: "2026-08-03" },
+        { id: 6,  title: "壁纸 06", category: "人像", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo6.jpg",  originalUrl: "images/original/photo6.jpg",  source: "个人摄影", dateAdded: "2026-08-02" },
+        { id: 7,  title: "壁纸 07", category: "城市", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo7.jpg",  originalUrl: "images/original/photo7.jpg",  source: "个人摄影", dateAdded: "2026-08-01" },
+        { id: 8,  title: "壁纸 08", category: "静物", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo8.jpg",  originalUrl: "images/original/photo8.jpg",  source: "个人摄影", dateAdded: "2026-07-31" },
+        { id: 9,  title: "壁纸 09", category: "风景", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo9.jpg",  originalUrl: "images/original/photo9.jpg",  source: "个人摄影", dateAdded: "2026-07-30" },
+        { id: 10, title: "壁纸 10", category: "人像", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo10.jpg", originalUrl: "images/original/photo10.jpg", source: "个人摄影", dateAdded: "2026-07-29" },
+        { id: 11, title: "壁纸 11", category: "城市", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo11.jpg", originalUrl: "images/original/photo11.jpg", source: "个人摄影", dateAdded: "2026-07-28" }
     ];
 
     /* ============================================================
