@@ -630,6 +630,16 @@
     /* ============================================================
        从数据中自动提取分类与标签
        ============================================================ */
+    /* 缓存的元数据 (分类/标签), 首次调用后复用 */
+    var metadataCache = null;
+
+    /* extractMeta 的别名, 带备忘录缓存 */
+    function getMeta() {
+        if (metadataCache) return metadataCache;
+        metadataCache = extractMeta();
+        return metadataCache;
+    }
+
     function extractMeta() {
         var categories = [];
         var tags = [];
