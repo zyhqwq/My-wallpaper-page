@@ -366,12 +366,26 @@
             gap: 26px;
         }
 
-        /* 左侧栏: 分类 / 标签 / 来源 */
+        /* 左侧栏: 分类 / 标签 / 来源 (白底黑字方框) */
         .modal-side-info {
-            width: 210px;
+            width: 230px;
             flex-shrink: 0;
             text-align: left;
             animation: modalSideIn 0.5s ease 0.08s both;
+        }
+
+        /* 信息条目方框: 白底黑字, 与下载按钮同风格 */
+        .modal-info-box {
+            background: #FFFFFF;
+            color: #000000;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .modal-info-box:last-child {
+            margin-bottom: 0;
         }
 
         /* 右侧栏: 下载按钮 */
@@ -444,19 +458,30 @@
             font-weight: 600;
         }
 
-        /* 标签 (黑色描边小标签) */
+        /* 弹窗内标签: 可点击按钮 (白底黑字, 悬停反转, 选中黑底白字) */
         .modal-tags {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 8px;
+            margin-top: 6px;
         }
         .modal-tags .tag {
             font-size: 13px;
             border: 1px solid #000;
             border-radius: 4px;
-            padding: 2px 8px;
+            padding: 4px 10px;
             background: #fff;
+            color: #000;
+            cursor: pointer;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+        .modal-tags .tag:hover {
+            background: #000;
+            color: #fff;
+        }
+        .modal-tags .tag.active {
+            background: #000;
+            color: #fff;
         }
 
         /* 下载按钮 */
@@ -594,18 +619,18 @@
             </div>
 
             <div class="modal-main">
-                <!-- 左侧: 分类 / 标签 / 来源 -->
+                <!-- 左侧: 分类 / 标签 / 来源 (白底黑字方框, 标签可点击) -->
                 <aside class="modal-side-info">
-                    <p class="modal-row">
+                    <div class="modal-info-box">
                         <span class="modal-label">分类：</span><span id="modalCategory"></span>
-                    </p>
-                    <p class="modal-row">
+                    </div>
+                    <div class="modal-info-box">
                         <span class="modal-label">标签：</span>
                         <span class="modal-tags" id="modalTags"></span>
-                    </p>
-                    <p class="modal-row">
+                    </div>
+                    <div class="modal-info-box">
                         <span class="modal-label">来源：</span><span id="modalSource"></span>
-                    </p>
+                    </div>
                 </aside>
 
                 <!-- 中间: 原图 (居中, 放大动画, 加载转圈) -->
@@ -892,6 +917,19 @@
     /* 下载按钮 */
     downloadBtn.addEventListener("click", handleDownload);
 
+    /* 弹窗内标签点击: 应用该标签筛选并关闭弹窗 */
+    modalTags.addEventListener("click", function (e) {
+        var tagBtn = e.target.closest(".tag");
+        if (!tagBtn) return;
+        var tag = tagBtn.getAttribute("data-tag");
+        var idx = state.tags.indexOf(tag);
+        if (idx === -1) state.tags.push(tag);
+        else state.tags.splice(idx, 1);
+        state.page = 1;
+        closeModal();
+        reRender();
+    });
+
     /* ============================================================
        模态框逻辑
        ============================================================ */
@@ -905,10 +943,11 @@
         modalSource.textContent = item.source;
         modalDate.textContent = "添加日期：" + item.dateAdded;
 
-        // 渲染标签 (纯文本, 无 emoji)
+        // 渲染标签为可点击按钮 (点击后应用该标签筛选)
         var tagHtml = "";
         item.tags.forEach(function (t) {
-            tagHtml += '<span class="tag">' + esc(t) + "</span>";
+            var active = state.tags.indexOf(t) !== -1 ? " active" : "";
+            tagHtml += '<button type="button" class="tag' + active + '" data-tag="' + esc(t) + '">' + esc(t) + "</button>";
         });
         modalTags.innerHTML = tagHtml || "无";
 
