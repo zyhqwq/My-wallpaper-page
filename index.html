@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="个人壁纸与美图分享网站 - White and Black Minimal">
+    <title>壁纸美图 | 个人分享</title>
+
+    <!-- 站点图标：纯黑方块 (避免控制台 favicon 404 报错) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='black'/></svg>">
+
+    <!-- Font Awesome 6.x 免费版（通过 CDN 加载，提供纯图形图标） -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* =====================================================
+           全局基础样式 (白黑极简主题)
+           ===================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 全局: 纯白背景, 纯黑文字, 系统无衬线字体, 无任何灰色装饰背景 */
+        body {
+            background: #FFFFFF;
+            color: #000000;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.5;
+        }
+
+        /* 页面容器: 最大宽 1200px, 居中, 左右留白 20px */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        /* 通用反转效果: 白底黑边 -> 悬停黑底白字 */
+        .invert {
+            background: #FFFFFF;
+            color: #000000;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+        .invert:hover {
+            background: #000000;
+            color: #FFFFFF;
+        }
+
+        /* =====================================================
+           顶部导航栏
+           ===================================================== */
+        header {
+            border-bottom: 1px solid #000;
+        }
+        .header-inner {
+            padding: 16px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .site-title {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .site-title span {
+            border: 1px solid #000;
+            border-radius: 4px;
+            padding: 2px 10px;
+        }
+
+        /* 分类导航: 标签式按钮, 横向可滚动 (移动端) */
+        .cate-nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .cate-nav::-webkit-scrollbar {
+            display: none;
+        }
+        .filter-btn {
+            padding: 6px 14px;
+            font-size: 13px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        /* 选中状态: 黑底白字 */
+        .filter-btn.active {
+            background: #000000;
+            color: #FFFFFF;
+        }
+
+        /* =====================================================
+           标签筛选栏 (可多选叠加)
+           ===================================================== */
+        .tag-bar {
+            border-top: 1px solid #000;
+            padding: 12px 0;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .tag-label {
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+        .tag-btn {
+            padding: 4px 12px;
+            font-size: 12px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .tag-btn.active {
+            background: #000000;
+            color: #FFFFFF;
+        }
+
+        /* =====================================================
+           结果信息
+           ===================================================== */
+        .result-info {
+            padding: 10px 0;
+            border-top: 1px solid #000;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* =====================================================
+           缩略图网格: 桌面4列 / 平板2列 / 手机1列
+           ===================================================== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        /* 卡片: 白底黑边, 悬停反转 */
+        .card {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0;
+            border-radius: 4px;
+            background: #FFFFFF;
+            border: 1px solid #000;
+            color: #000000;
+            overflow: hidden;
+            cursor: pointer;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+        .card:hover {
+            background: #000000;
+            color: #FFFFFF;
+        }
+
+        /* 缩略图区域: 固定 4:3 比例, 灰色细边框包裹 */
+        .thumb-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border: 1px solid #d0d0d0;
+            background: #FFFFFF;
+            overflow: hidden;
+        }
+        .thumb-wrap img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 卡片底部来源信息 (12px 小号字体) */
+        .card-source {
+            padding: 6px 8px;
+            font-size: 12px;
+        }
+
+        /* 纯 CSS 旋转黑环加载动画 */
+        .spinner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+        .spinner::before {
+            content: "";
+            width: 34px;
+            height: 34px;
+            border: 3px solid #000;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* 加载失败占位 */
+        .thumb-wrap .load-error {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #888;
+        }
+        .thumb-wrap.is-error .spinner,
+        .thumb-wrap.is-error img {
+            display: none;
+        }
+        .thumb-wrap.is-error .load-error {
+            display: flex;
+        }
+
+        /* 隐藏状态 (图片加载完成后隐藏 spinner) */
+        .thumb-wrap.is-loaded .spinner {
+            display: none;
+        }
+
+        /* =====================================================
+           分页控件
+           ===================================================== */
+        .pagination {
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            border-top: 1px solid #000;
+        }
+        .pagination.hidden {
+            display: none;
+        }
+        .page-btn {
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+        .page-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+        .page-info {
+            font-size: 14px;
+            border: 1px solid #000;
+            border-radius: 4px;
+            padding: 8px 16px;
+        }
+
+        /* =====================================================
+           页脚
+           ===================================================== */
+        footer {
+            border-top: 1px solid #000;
+            margin-top: 20px;
+        }
+        .footer-inner {
+            padding: 18px 0;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 13px;
+        }
+        .footer-link {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        /* =====================================================
+           模态框 (全屏遮罩层, 纯白背景)
+           ===================================================== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: #FFFFFF;   /* 不透明纯白背景 */
+            z-index: 100;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: auto;
+        }
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        /* 关闭按钮 (X 符号), 固定右上角 */
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            border-radius: 4px;
+            background: #fff;
+            color: #000;
+            border: 1px solid #000;
+            cursor: pointer;
+            z-index: 101;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+        .modal-close:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        /* 模态内容 */
+        .modal-body {
+            width: 100%;
+            max-width: 90vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 原图: 按比例缩放, 最大宽度90vw, 最大高度80vh */
+        .modal-img {
+            max-width: 90vw;
+            max-height: 80vh;
+            object-fit: contain;
+            border: 1px solid #000;
+            border-radius: 4px;
+        }
+
+        /* 原图下方信息区 */
+        .modal-meta {
+            margin-top: 16px;
+            width: 100%;
+            text-align: center;
+            border-top: 1px solid #000;
+            padding-top: 14px;
+        }
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .modal-row {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+        .modal-row .modal-label {
+            font-weight: 600;
+        }
+
+        /* 标签用黑色圆点 (CSS 绘制, 非 emoji) 分隔 */
+        .modal-tags {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .modal-tags .tag {
+            font-size: 13px;
+            border: 1px solid #000;
+            border-radius: 4px;
+            padding: 2px 8px;
+        }
+
+        /* 操作按钮区: 下载按钮 */
+        .modal-actions {
+            margin-top: 16px;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        .action-btn {
+            padding: 10px 24px;
+            font-size: 14px;
+            border-radius: 4px;
+            background: #fff;
+            color: #000;
+            border: 1px solid #000;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+        .action-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+        .action-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            background: #fff;
+            color: #000;
+        }
+
+        /* =====================================================
+           响应式: 平板 2 列, 手机 1 列, 分类导航可横向滚动
+           ===================================================== */
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .cate-nav,
+            .tag-bar {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .modal-img {
+                max-height: 70vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= 顶部导航栏 ================= -->
+    <header>
+        <div class="container header-inner">
+            <div class="site-title"><span>壁纸与美图</span></div>
+            <!-- 分类导航：运行时由 JavaScript 自动填充 -->
+            <nav class="cate-nav" id="categoryNav" aria-label="分类导航"></nav>
+        </div>
+    </header>
+
+    <!-- ================= 标签筛选栏 ================= -->
+    <div class="container">
+        <div class="tag-bar" id="tagBar">
+            <span class="tag-label">标签</span>
+            <!-- 标签按钮由 JavaScript 自动填充 -->
+        </div>
+    </div>
+
+    <!-- ================= 结果信息 ================= -->
+    <div class="container">
+        <div class="result-info">
+            <span id="resultSummary"></span>
+            <span id="downloadHint"></span>
+        </div>
+    </div>
+
+    <!-- ================= 缩略图网格 ================= -->
+    <main class="container">
+        <div class="grid" id="grid"></div>
+    </main>
+
+    <!-- ================= 分页控件 ================= -->
+    <div class="container">
+        <nav class="pagination hidden" id="pagination">
+            <button class="page-btn invert" id="prevBtn" aria-label="上一页">&lt; 上一页</button>
+            <span class="page-info" id="pageInfo">1 / 1</span>
+            <button class="page-btn invert" id="nextBtn" aria-label="下一页">下一页 &gt;</button>
+        </nav>
+    </div>
+
+    <!-- ================= 页脚 ================= -->
+    <footer>
+        <div class="container footer-inner">
+            <span class="site-title" style="font-size:14px;letter-spacing:0;">个人壁纸与美图分享站</span>
+            <span class="footer-link invert"><i class="fa-solid fa-heart"></i> 建站名</span>
+        </div>
+    </footer>
+
+    <!-- ================= 模态框 (全屏遮罩层) ================= -->
+    <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="图片详情">
+        <!-- 关闭按钮 (X 符号使用 Font Awesome) -->
+        <button class="modal-close" id="modalClose" aria-label="关闭">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-body">
+            <!-- 原图 -->
+            <img class="modal-img" id="modalImg" alt="原图预览">
+
+            <!-- 原图下方信息 -->
+            <div class="modal-meta">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-row">
+                    <span class="modal-label">分类：</span><span id="modalCategory"></span>
+                </p>
+                <p class="modal-row">
+                    <span class="modal-label">标签：</span>
+                    <span class="modal-tags" id="modalTags"></span>
+                </p>
+                <p class="modal-row">
+                    <span class="modal-label">来源：</span><span id="modalSource"></span>
+                </p>
+                <p class="modal-row" style="font-size:12px;color:#555;" id="modalDate"></p>
+            </div>
+
+            <!-- 下载按钮 -->
+            <div class="modal-actions">
+                <button class="action-btn" id="downloadBtn" disabled>
+                    <i class="fa-solid fa-download"></i> <span id="downloadLabel">下载</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    /* ============================================================
+       演示图片数据 (应替换为仓库内 images/thumb/* 与 images/original/* 的真实路径)
+       本示例使用 picsum.photos 占位图服务, seed 相同则缩略图与原图内容一致
+       ============================================================ */
+    var IMAGES = [
+        { id: 1,  title: "金色日落山脉",   category: "自然", tags: ["日落","山脉","金色","4K"],  thumbnailUrl: "https://picsum.photos/seed/wall1/400/300",  originalUrl: "https://picsum.photos/seed/wall1/1200/800",  source: "来自Unsplash", dateAdded: "2026-07-30" },
+        { id: 2,  title: "云端之城",       category: "城市", tags: ["天际线","云朵","高层"],     thumbnailUrl: "https://picsum.photos/seed/wall2/400/300",  originalUrl: "https://picsum.photos/seed/wall2/1200/800",  source: "个人摄影",     dateAdded: "2026-07-29" },
+        { id: 3,  title: "极简几何",       category: "抽象", tags: ["几何","极简","线条"],       thumbnailUrl: "https://picsum.photos/seed/wall3/400/300",  originalUrl: "https://picsum.photos/seed/wall3/1200/800",  source: "来自Unsplash", dateAdded: "2026-07-28" },
+        { id: 4,  title: "蓝色海洋",       category: "自然", tags: ["海洋","蓝色","波浪"],       thumbnailUrl: "https://picsum.photos/seed/wall4/400/300",  originalUrl: "https://picsum.photos/seed/wall4/1200/800",  source: "来自Pexels",   dateAdded: "2026-07-27" },
+        { id: 5,  title: "森林晨雾",       category: "自然", tags: ["森林","树木","雾气"],       thumbnailUrl: "https://picsum.photos/seed/wall5/400/300",  originalUrl: "https://picsum.photos/seed/wall5/1200/800",  source: "个人摄影",     dateAdded: "2026-07-26" },
+        { id: 6,  title: "夜晚霓虹街",     category: "城市", tags: ["夜景","霓虹","街道"],       thumbnailUrl: "https://picsum.photos/seed/wall6/400/300",  originalUrl: "https://picsum.photos/seed/wall6/1200/800",  source: "来自Unsplash", dateAdded: "2026-07-25" },
+        { id: 7,  title: "星光夜空",       category: "自然", tags: ["星空","银河","夜晚"],       thumbnailUrl: "https://picsum.photos/seed/wall7/400/300",  originalUrl: "https://picsum.photos/seed/wall7/1200/800",  source: "来自Unsplash", dateAdded: "2026-07-24" },
+        { id: 8,  title: "白色空间",       category: "抽象", tags: ["极简","白色","留白"],       thumbnailUrl: "https://picsum.photos/seed/wall8/400/300",  originalUrl: "https://picsum.photos/seed/wall8/1200/800",  source: "个人摄影",     dateAdded: "2026-07-23" },
+        { id: 9,  title: "沙漠沙丘",       category: "自然", tags: ["沙漠","沙丘","暖色"],       thumbnailUrl: "https://picsum.photos/seed/wall9/400/300",  originalUrl: "https://picsum.photos/seed/wall9/1200/800",  source: "来自Pexels",   dateAdded: "2026-07-22" },
+        { id: 10, title: "雨中城市",       category: "城市", tags: ["雨","街道","倒影"],         thumbnailUrl: "https://picsum.photos/seed/wall10/400/300", originalUrl: "https://picsum.photos/seed/wall10/1200/800", source: "来自Unsplash", dateAdded: "2026-07-21" },
+        { id: 11, title: "湖畔倒影",       category: "自然", tags: ["湖泊","倒影","宁静"],       thumbnailUrl: "https://picsum.photos/seed/wall11/400/300", originalUrl: "https://picsum.photos/seed/wall11/1200/800", source: "个人摄影",     dateAdded: "2026-07-20" },
+        { id: 12, title: "雪山之巅",       category: "自然", tags: ["雪山","冰雪","山脉"],       thumbnailUrl: "https://picsum.photos/seed/wall12/400/300", originalUrl: "https://picsum.photos/seed/wall12/1200/800", source: "来自Unsplash", dateAdded: "2026-07-19" },
+        { id: 13, title: "城市公路",       category: "城市", tags: ["公路","车辆","远景"],       thumbnailUrl: "https://picsum.photos/seed/wall13/400/300", originalUrl: "https://picsum.photos/seed/wall13/1200/800", source: "来自Pexels",   dateAdded: "2026-07-18" },
+        { id: 14, title: "黑白光影",       category: "抽象", tags: ["黑白","光影","阴影"],       thumbnailUrl: "https://picsum.photos/seed/wall14/400/300", originalUrl: "https://picsum.photos/seed/wall14/1200/800", source: "个人摄影",     dateAdded: "2026-07-17" },
+        { id: 15, title: "粉色花海",       category: "自然", tags: ["鲜花","粉色","花海"],       thumbnailUrl: "https://picsum.photos/seed/wall15/400/300", originalUrl: "https://picsum.photos/seed/wall15/1200/800", source: "来自Unsplash", dateAdded: "2026-07-16" },
+        { id: 16, title: "现代建筑群",     category: "建筑", tags: ["现代","玻璃","几何"],       thumbnailUrl: "https://picsum.photos/seed/wall16/400/300", originalUrl: "https://picsum.photos/seed/wall16/1200/800", source: "来自Unsplash", dateAdded: "2026-07-15" },
+        { id: 17, title: "老城小巷",       category: "城市", tags: ["小巷","历史","街道"],       thumbnailUrl: "https://picsum.photos/seed/wall17/400/300", originalUrl: "https://picsum.photos/seed/wall17/1200/800", source: "个人摄影",     dateAdded: "2026-07-14" },
+        { id: 18, title: "渐变色彩",       category: "抽象", tags: ["渐变","色彩","流动"],       thumbnailUrl: "https://picsum.photos/seed/wall18/400/300", originalUrl: "https://picsum.photos/seed/wall18/1200/800", source: "来自Pexels",   dateAdded: "2026-07-13" },
+        { id: 19, title: "山间公路",       category: "自然", tags: ["山脉","公路","绿色"],       thumbnailUrl: "https://picsum.photos/seed/wall19/400/300", originalUrl: "https://picsum.photos/seed/wall19/1200/800", source: "个人摄影",     dateAdded: "2026-07-12" },
+        { id: 20, title: "都市夜景",       category: "城市", tags: ["夜景","灯光","高层"],       thumbnailUrl: "https://picsum.photos/seed/wall20/400/300", originalUrl: "https://picsum.photos/seed/wall20/1200/800", source: "来自Unsplash", dateAdded: "2026-07-11" },
+        { id: 21, title: "冬日雪林",       category: "自然", tags: ["雪","树木","冬天"],         thumbnailUrl: "https://picsum.photos/seed/wall21/400/300", originalUrl: "https://picsum.photos/seed/wall21/1200/800", source: "来自Unsplash", dateAdded: "2026-07-10" },
+        { id: 22, title: "抽象漩涡",       category: "抽象", tags: ["漩涡","纹理","图案"],       thumbnailUrl: "https://picsum.photos/seed/wall22/400/300", originalUrl: "https://picsum.photos/seed/wall22/1200/800", source: "来自Pexels",   dateAdded: "2026-07-09" },
+        { id: 23, title: "海边灯塔",       category: "自然", tags: ["海洋","灯塔","海岸"],       thumbnailUrl: "https://picsum.photos/seed/wall23/400/300", originalUrl: "https://picsum.photos/seed/wall23/1200/800", source: "个人摄影",     dateAdded: "2026-07-08" },
+        { id: 24, title: "玻璃幕墙",       category: "建筑", tags: ["玻璃","幕墙","反射"],       thumbnailUrl: "https://picsum.photos/seed/wall24/400/300", originalUrl: "https://picsum.photos/seed/wall24/1200/800", source: "来自Unsplash", dateAdded: "2026-07-07" },
+        { id: 25, title: "夕阳剪影",       category: "自然", tags: ["日落","剪影","暖色"],       thumbnailUrl: "https://picsum.photos/seed/wall25/400/300", originalUrl: "https://picsum.photos/seed/wall25/1200/800", source: "个人摄影",     dateAdded: "2026-07-06" },
+        { id: 26, title: "极简海岸线",     category: "抽象", tags: ["极简","线条","海岸"],       thumbnailUrl: "https://picsum.photos/seed/wall26/400/300", originalUrl: "https://picsum.photos/seed/wall26/1200/800", source: "来自Pexels",   dateAdded: "2026-07-05" },
+        { id: 27, title: "白色教堂",       category: "建筑", tags: ["白色","教堂","历史"],       thumbnailUrl: "https://picsum.photos/seed/wall27/400/300", originalUrl: "https://picsum.photos/seed/wall27/1200/800", source: "来自Unsplash", dateAdded: "2026-07-04" },
+        { id: 28, title: "云海日出",       category: "自然", tags: ["日出","云海","金色"],       thumbnailUrl: "https://picsum.photos/seed/wall28/400/300", originalUrl: "https://picsum.photos/seed/wall28/1200/800", source: "来自Unsplash", dateAdded: "2026-07-03" }
+    ];
+
+    /* ============================================================
+       全局配置
+       ============================================================ */
+    var PER_PAGE = 20;           // 每页显示的缩略图数量
+
+    /* 当前会话时间戳, 追加到图片 URL (?t=xxx) 以避免缓存盗链 */
+    var TIMESTAMP = Date.now();
+
+    /* 应用状态: 分类 / 多标签 / 当前页 */
+    var state = {
+        category: "all",         // "all" 表示全部
+        tags: [],                // 已选标签数组 (可多选, 叠加)
+        page: 1
+    };
+
+    var currentItem = null;      // 模态框中当前显示的图片数据
+    var downloadReady = false;   // 原图是否可下载 (跨域检测结果)
+
+    /* 可复用的 DOM 引用 */
+    var elCategoryNav = document.getElementById("categoryNav");
+    var elTagBar = document.getElementById("tagBar");
+    var elGrid = document.getElementById("grid");
+    var elSummary = document.getElementById("resultSummary");
+    var elPagination = document.getElementById("pagination");
+    var elPageInfo = document.getElementById("pageInfo");
+    var elPrevBtn = document.getElementById("prevBtn");
+    var elNextBtn = document.getElementById("nextBtn");
+
+    var modalOverlay = document.getElementById("modalOverlay");
+    var modalImg = document.getElementById("modalImg");
+    var modalTitle = document.getElementById("modalTitle");
+    var modalCategory = document.getElementById("modalCategory");
+    var modalTags = document.getElementById("modalTags");
+    var modalSource = document.getElementById("modalSource");
+    var modalDate = document.getElementById("modalDate");
+    var modalClose = document.getElementById("modalClose");
+    var downloadBtn = document.getElementById("downloadBtn");
+    var downloadLabel = document.getElementById("downloadLabel");
+
+    /* ============================================================
+       工具函数
+       ============================================================ */
+
+    /* 为 URL 追加防缓存时间戳参数 */
+    function stamp(url, ts) {
+        var t = ts === undefined ? TIMESTAMP : ts;
+        var sep = url.indexOf("?") === -1 ? "?" : "&";
+        return url + sep + "t=" + t;
+    }
+
+    /* HTML 转义, 防止注入 */
+    function esc(s) {
+        var d = document.createElement("div");
+        d.textContent = String(s);
+        return d.innerHTML;
+    }
+
+    /* 从原图 URL 推导下载文件扩展名 */
+    function extFrom(url) {
+        var m = url.match(/\.([a-zA-Z0-9]+)(?:$|\?)/);
+        return m ? m[1] : "jpg";
+    }
+
+    /* 刷新当前 URL (History API, 供分享链接) */
+    function updateURL() {
+        var params = new URLSearchParams();
+        if (state.category !== "all") params.set("category", state.category);
+        state.tags.forEach(function (t) { params.set("tag", t); }); // 同名参数可多个
+        if (state.page > 1) params.set("page", state.page);
+        var qs = params.toString();
+        var url = location.pathname + (qs ? ("?" + qs) : "");
+        history.pushState(null, "", url);
+    }
+
+    /* ============================================================
+       从数据中自动提取分类与标签
+       ============================================================ */
+    function extractMeta() {
+        var categories = [];
+        var tags = [];
+        IMAGES.forEach(function (img) {
+            if (categories.indexOf(img.category) === -1) categories.push(img.category);
+            img.tags.forEach(function (t) {
+                if (tags.indexOf(t) === -1) tags.push(t);
+            });
+        });
+        return { categories: categories, tags: tags };
+    }
+
+    /* 渲染分类导航 */
+    function renderCategories() {
+        var meta = getMeta();
+        var html = "";
+        // "全部" 始终置于首位
+        html += '<button class="filter-btn invert' + (state.category === "all" ? " active" : "") + '" data-category="all">全部</button>';
+        meta.categories.forEach(function (c) {
+            html += '<button class="filter-btn invert' + (state.category === c ? " active" : "") + '" data-category="' + esc(c) + '">' + esc(c) + "</button>";
+        });
+        elCategoryNav.innerHTML = html;
+    }
+
+    /* 渲染标签筛选栏 */
+    function renderTags() {
+        var tags = getMeta().tags;
+        var html = '<span class="tag-label">标签</span>';
+        tags.forEach(function (t) {
+            var on = state.tags.indexOf(t) !== -1;
+            html += '<button class="tag-btn invert' + (on ? " active" : "") + '" data-tag="' + esc(t) + '">' + esc(t) + "</button>";
+        });
+        elTagBar.innerHTML = html;
+    }
+
+    /* ============================================================
+       筛选 + 排序 + 分页
+       ============================================================ */
+
+    /* 返回经过分类/标签过滤并按日期降序排序后的完整列表 */
+    function getFiltered() {
+        return IMAGES
+            .filter(function (img) {
+                if (state.category !== "all" && img.category !== state.category) return false;
+                // 所有选中标签都必须存在于该图片中 (叠加条件)
+                return state.tags.every(function (t) { return img.tags.indexOf(t) !== -1; });
+            })
+            .slice()
+            .sort(function (a, b) {
+                return new Date(b.dateAdded) - new Date(a.dateAdded); // 最新在前
+            });
+    }
+
+    /* 渲染缩略图网格 + 分页控件 + 结果信息 */
+    function render() {
+        var filtered = getFiltered();
+        var totalItems = filtered.length;
+        var totalPages = Math.max(1, Math.ceil(totalItems / PER_PAGE));
+
+        // 防止 page 越界
+        if (state.page > totalPages) state.page = totalPages;
+        if (state.page < 1) state.page = 1;
+
+        // 分页切片
+        var start = (state.page - 1) * PER_PAGE;
+        var pageItems = filtered.slice(start, start + PER_PAGE);
+
+        // ---- 渲染缩略图 ----
+        var html = "";
+        pageItems.forEach(function (img) {
+            var src = stamp(img.thumbnailUrl);
+            html +=
+                '<button type="button" class="card" data-id="' + img.id + '">' +
+                    '<div class="thumb-wrap">' +
+                        '<div class="spinner"></div>' +
+                        '<img loading="lazy" src="' + src + '" alt="' + esc(img.title) + '" data-id="' + img.id + '">' +
+                        '<div class="load-error">图片加载失败</div>' +
+                    '</div>' +
+                    '<div class="card-source">来源：' + esc(img.source) + "</div>" +
+                "</button>";
+        });
+        elGrid.innerHTML = html;
+
+        // 若加载失败则隐藏图片并显示占位
+        Array.prototype.forEach.call(elGrid.querySelectorAll("img"), function (imgEl) {
+            var wrap = imgEl.parentNode;
+            imgEl.addEventListener("load", function () { wrap.classList.add("is-loaded"); });
+            imgEl.addEventListener("error", function () { wrap.classList.add("is-error"); });
+        });
+
+        // ---- 渲染结果摘要 ----
+        elSummary.textContent =
+            "共 " + totalItems + " 张图片" +
+            (state.category !== "all" ? ", 分类：" + state.category : "") +
+            (state.tags.length ? ", 标签：" + state.tags.join(" / ") : "") +
+            ", 第 " + state.page + " 页";
+
+        // ---- 渲染分页 ----
+        elPageInfo.textContent = state.page + " / " + totalPages;
+        elPrevBtn.disabled = state.page === 1;
+        elNextBtn.disabled = state.page === totalPages;
+        // 总页数 <=1 时不显示分页控件
+        if (totalPages <= 1) {
+            elPagination.classList.add("hidden");
+        } else {
+            elPagination.classList.remove("hidden");
+        }
+    }
+
+    /* 统一的重渲入口 (分类/标签/页码变动后调用) */
+    function reRender() {
+        renderCategories();
+        renderTags();
+        render();
+        updateURL();
+    }
+
+    /* ============================================================
+       事件绑定
+       ============================================================ */
+
+    /* 分类点击: 设置分类并重置到第一页 */
+    elCategoryNav.addEventListener("click", function (e) {
+        var btn = e.target.closest(".filter-btn");
+        if (!btn) return;
+        var cat = btn.getAttribute("data-category");
+        if (state.category === cat) return;
+        state.category = cat;
+        state.page = 1;
+        reRender();
+    });
+
+    /* 标签点击: 叠加/取消多标签, 重置到底一页 */
+    elTagBar.addEventListener("click", function (e) {
+        var btn = e.target.closest(".tag-btn");
+        if (!btn) return;
+        var tag = btn.getAttribute("data-tag");
+        var idx = state.tags.indexOf(tag);
+        if (idx === -1) state.tags.push(tag);
+        else state.tags.splice(idx, 1);
+        state.page = 1;
+        reRender();
+    });
+
+    /* 分页: 上一页 / 下一页 */
+    elPrevBtn.addEventListener("click", function () {
+        if (state.page > 1) { state.page--; render(); updateURL(); }
+    });
+    elNextBtn.addEventListener("click", function () {
+        if (state.page * PER_PAGE < getFiltered().length) { state.page++; render(); updateURL(); }
+    });
+
+    /* 缩略图点击: 打开模态框 */
+    elGrid.addEventListener("click", function (e) {
+        var card = e.target.closest(".card");
+        if (!card) return;
+        var id = Number(card.getAttribute("data-id"));
+        var found = IMAGES.filter(function (i) { return i.id === id; })[0];
+        if (found) openModal(found);
+    });
+
+    /* 关闭模态框 */
+    modalClose.addEventListener("click", closeModal);
+
+    /* ESC 键关闭 (点击背景不关闭, 符合需求) */
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && modalOverlay.classList.contains("open")) closeModal();
+    });
+
+    /* 下载按钮 */
+    downloadBtn.addEventListener("click", handleDownload);
+
+    /* ============================================================
+       模态框逻辑
+       ============================================================ */
+
+    /* 打开模态框, 填充内容, 并探测原图是否可下载(跨域) */
+    function openModal(item) {
+        currentItem = item;
+        downloadReady = false;
+
+        modalImg.src = stamp(item.originalUrl, Date.now());
+        modalImg.alt = item.title;
+        modalTitle.textContent = item.title;
+        modalCategory.textContent = item.category;
+        modalSource.textContent = item.source;
+        modalDate.textContent = "添加日期：" + item.dateAdded;
+
+        // 渲染标签 (纯文本, 无 emoji)
+        var tagHtml = "";
+        item.tags.forEach(function (t) {
+            tagHtml += '<span class="tag">' + esc(t) + "</span>";
+        });
+        modalTags.innerHTML = tagHtml || "无";
+
+        // 重置下载按钮
+        downloadLabel.textContent = "下载";
+        downloadBtn.disabled = true;
+
+        modalOverlay.classList.add("open");
+        document.body.style.overflow = "hidden"; // 锁定背景滚动
+
+        // 跨域探测: 使用 crossorigin 加载原图, 成功则可下载, 失败则禁用
+        var probe = new Image();
+        probe.crossOrigin = "anonymous";
+        probe.onload = function () {
+            downloadReady = true;
+            downloadBtn.disabled = false;
+        };
+        probe.onerror = function () {
+            downloadReady = false;
+            downloadLabel.textContent = "无法下载";
+            downloadBtn.disabled = true;
+        };
+        probe.src = stamp(item.originalUrl, Date.now());
+    }
+
+    /* 关闭模态框 */
+    function closeModal() {
+        modalOverlay.classList.remove("open");
+        document.body.style.overflow = "";
+        currentItem = null;
+    }
+
+    /* 下载: 经 CORS 取 blob 后通过 <a download> 触发保存 */
+    function handleDownload() {
+        if (!currentItem) return;
+        if (!downloadReady) {
+            downloadLabel.textContent = "无法下载";
+            downloadBtn.disabled = true;
+            alert("无法下载：图片跨域或加载失败");
+            return;
+        }
+
+        downloadBtn.disabled = true;
+        downloadLabel.textContent = "下载中...";
+
+        var url = stamp(currentItem.originalUrl, Date.now());
+        var filename = currentItem.title + "." + extFrom(currentItem.originalUrl);
+
+        fetch(url, { mode: "cors" })
+            .then(function (resp) {
+                if (!resp.ok) throw new Error("网络异常");
+                return resp.blob();
+            })
+            .then(function (blob) {
+                var blobUrl = URL.createObjectURL(blob);
+                // 使用 <a> 标签 download 属性 + referrerpolicy + crossorigin, 触发下载
+                var a = document.createElement("a");
+                a.href = blobUrl;
+                a.download = filename;
+                a.referrerPolicy = "no-referrer";
+                a.crossOrigin = "anonymous";
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(blobUrl);
+                downloadBtn.disabled = false;
+                downloadLabel.textContent = "下载";
+            })
+            .catch(function () {
+                // 跨域或加载失败
+                downloadLabel.textContent = "无法下载";
+                downloadBtn.disabled = true;
+                alert("无法下载：该图片跨域或加载失败");
+            });
+    }
+
+    /* ============================================================
+       初始化: 解析 URL 参数 -> 渲染
+       ============================================================ */
+    function initFromURL() {
+        var params = new URLSearchParams(location.search);
+
+        var cat = params.get("category");
+        if (cat) state.category = cat;
+
+        var tags = params.getAll("tag");
+        if (tags.length) state.tags = tags;
+
+        var page = parseInt(params.get("page"), 10);
+        if (!isNaN(page) && page > 0) state.page = page;
+    }
+
+    /* 浏览器前进/后退: 重新读取 URL 参数并渲染 */
+    window.addEventListener("popstate", function () {
+        loadStateFromURL();
+    });
+
+    function loadStateFromURL() {
+        var params = new URLSearchParams(location.search);
+        state.category = params.get("category") || "all";
+        state.tags = params.getAll("tag");
+        var page = parseInt(params.get("page"), 10);
+        state.page = (isNaN(page) || page < 1) ? 1 : page;
+        render(); // 重新渲染 (重绘导航的选中态)
+        renderCategories();
+        renderTags();
+    }
+
+    /* 启动 */
+    initFromURL();
+    reRender();
+    </script>
+</body>
+</html>
