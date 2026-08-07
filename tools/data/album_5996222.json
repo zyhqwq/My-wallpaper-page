@@ -1,0 +1,347 @@
+{
+ "id": "5996222",
+ "viewKind": 3,
+ "gameId": 3,
+ "cateId": 12,
+ "status": 1,
+ "title": "【Delta 勘探实录——北部禁区】",
+ "imageList": [
+  {
+   "id": "6a575e2b758aae6784497b64",
+   "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b758aae6784497b64_ef3391c4.webp",
+   "width": "3840",
+   "height": "1920",
+   "size": "699722",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b758aae6784497b64_ef3391c4.webp",
+     "width": "3840",
+     "height": "1920",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b758aae6784497b64_ef3391c4.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "327",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b758aae6784497b64_ef3391c4.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "702",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b758aae6784497b64_ef3391c4.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "218",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b758aae6784497b64_ef3391c4.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1378",
+     "height": "689",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  },
+  {
+   "id": "6a575e20504224056187022c",
+   "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e20504224056187022c_004865de.webp",
+   "width": "3840",
+   "height": "1920",
+   "size": "561986",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e20504224056187022c_004865de.webp",
+     "width": "3840",
+     "height": "1920",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e20504224056187022c_004865de.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "327",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e20504224056187022c_004865de.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "702",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e20504224056187022c_004865de.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "218",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e20504224056187022c_004865de.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1378",
+     "height": "689",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  },
+  {
+   "id": "6a575e2b17bac1f2c71eeff9",
+   "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b17bac1f2c71eeff9_91c496d2.webp",
+   "width": "3840",
+   "height": "1920",
+   "size": "597926",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b17bac1f2c71eeff9_91c496d2.webp",
+     "width": "3840",
+     "height": "1920",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b17bac1f2c71eeff9_91c496d2.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "327",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b17bac1f2c71eeff9_91c496d2.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "702",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b17bac1f2c71eeff9_91c496d2.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "218",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b17bac1f2c71eeff9_91c496d2.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1378",
+     "height": "689",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  },
+  {
+   "id": "6a575e2bd0c2c655bd1ddf39",
+   "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2bd0c2c655bd1ddf39_91c496d2.webp",
+   "width": "3840",
+   "height": "1920",
+   "size": "340996",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2bd0c2c655bd1ddf39_91c496d2.webp",
+     "width": "3840",
+     "height": "1920",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2bd0c2c655bd1ddf39_91c496d2.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "327",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2bd0c2c655bd1ddf39_91c496d2.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "702",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2bd0c2c655bd1ddf39_91c496d2.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "218",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2bd0c2c655bd1ddf39_91c496d2.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1378",
+     "height": "689",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  },
+  {
+   "id": "6a575e2b1c1c7a6292e09ce4",
+   "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b1c1c7a6292e09ce4_ef3391c4.webp",
+   "width": "3840",
+   "height": "1920",
+   "size": "400318",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b1c1c7a6292e09ce4_ef3391c4.webp",
+     "width": "3840",
+     "height": "1920",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b1c1c7a6292e09ce4_ef3391c4.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "327",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b1c1c7a6292e09ce4_ef3391c4.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "702",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b1c1c7a6292e09ce4_ef3391c4.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "218",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b1c1c7a6292e09ce4_ef3391c4.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1378",
+     "height": "689",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  },
+  {
+   "id": "6a575e2b1afa8be8185110a3",
+   "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b1afa8be8185110a3_004865de.webp",
+   "width": "3840",
+   "height": "1920",
+   "size": "356438",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b1afa8be8185110a3_004865de.webp",
+     "width": "3840",
+     "height": "1920",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b1afa8be8185110a3_004865de.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "327",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b1afa8be8185110a3_004865de.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "702",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b1afa8be8185110a3_004865de.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "218",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575e2b1afa8be8185110a3_004865de.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1378",
+     "height": "689",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  }
+ ],
+ "videoList": [],
+ "caption": [
+  {
+   "kind": "text",
+   "text": {
+    "text": "滴——Delta成功接入「北部禁区」区域画面信号，现将高清版本同步管理员~♪( ´θ｀)ノ"
+   }
+  }
+ ],
+ "downloadEnable": true,
+ "coverImageId": "6a575e20504224056187022c",
+ "tagIds": [
+  297
+ ],
+ "timestamp": "1784113209",
+ "ipLocation": "上海",
+ "latestReplyAtTs": "1785721694",
+ "userId": "131",
+ "publishedAtTs": "1784113209"
+}

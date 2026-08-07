@@ -1,0 +1,353 @@
+{
+ "id": "5994156",
+ "viewKind": 3,
+ "gameId": 3,
+ "cateId": 12,
+ "status": 1,
+ "title": "【Delta 勘探实录——应龙关】",
+ "imageList": [
+  {
+   "id": "6a56023f50422405618700f9",
+   "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f50422405618700f9_0095c241.webp",
+   "width": "3840",
+   "height": "1920",
+   "size": "503774",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f50422405618700f9_0095c241.webp",
+     "width": "3840",
+     "height": "1920",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f50422405618700f9_0095c241.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "327",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f50422405618700f9_0095c241.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "702",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f50422405618700f9_0095c241.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "218",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f50422405618700f9_0095c241.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1378",
+     "height": "689",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  },
+  {
+   "id": "6a560266487f5993fbb825ed",
+   "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a560266487f5993fbb825ed_004865de.webp",
+   "width": "3840",
+   "height": "1920",
+   "size": "663358",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a560266487f5993fbb825ed_004865de.webp",
+     "width": "3840",
+     "height": "1920",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a560266487f5993fbb825ed_004865de.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "327",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a560266487f5993fbb825ed_004865de.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "702",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a560266487f5993fbb825ed_004865de.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "218",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a560266487f5993fbb825ed_004865de.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1378",
+     "height": "689",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  },
+  {
+   "id": "6a56023fa8fd4a2648a7816c",
+   "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023fa8fd4a2648a7816c_0095c241.webp",
+   "width": "3840",
+   "height": "1920",
+   "size": "979918",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023fa8fd4a2648a7816c_0095c241.webp",
+     "width": "3840",
+     "height": "1920",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023fa8fd4a2648a7816c_0095c241.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "327",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023fa8fd4a2648a7816c_0095c241.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "702",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023fa8fd4a2648a7816c_0095c241.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "218",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023fa8fd4a2648a7816c_0095c241.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1378",
+     "height": "689",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  },
+  {
+   "id": "6a56023f1da1e29cd294f102",
+   "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f1da1e29cd294f102_004865de.webp",
+   "width": "3840",
+   "height": "1920",
+   "size": "230304",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f1da1e29cd294f102_004865de.webp",
+     "width": "3840",
+     "height": "1920",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f1da1e29cd294f102_004865de.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "327",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f1da1e29cd294f102_004865de.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "702",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f1da1e29cd294f102_004865de.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "218",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f1da1e29cd294f102_004865de.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1378",
+     "height": "689",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  },
+  {
+   "id": "6a56023f1da1e29cd294f103",
+   "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f1da1e29cd294f103_91c496d2.webp",
+   "width": "3840",
+   "height": "1920",
+   "size": "769750",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f1da1e29cd294f103_91c496d2.webp",
+     "width": "3840",
+     "height": "1920",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f1da1e29cd294f103_91c496d2.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "327",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f1da1e29cd294f103_91c496d2.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "702",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f1da1e29cd294f103_91c496d2.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "218",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023f1da1e29cd294f103_91c496d2.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1378",
+     "height": "689",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  },
+  {
+   "id": "6a56023a7495486f8405df9b",
+   "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023a7495486f8405df9b_91c496d2.webp",
+   "width": "3840",
+   "height": "1920",
+   "size": "582564",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023a7495486f8405df9b_91c496d2.webp",
+     "width": "3840",
+     "height": "1920",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023a7495486f8405df9b_91c496d2.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "327",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023a7495486f8405df9b_91c496d2.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "702",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023a7495486f8405df9b_91c496d2.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "218",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260714/131/6a56023a7495486f8405df9b_91c496d2.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1378",
+     "height": "689",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  }
+ ],
+ "videoList": [],
+ "caption": [
+  {
+   "kind": "text",
+   "text": {
+    "text": "滴——收到一份来自新区域「应龙关」的影像情报！Delta已上传至管理员端~(๑ᵔ⤙ᵔ๑)"
+   }
+  },
+  {
+   "kind": "text",
+   "text": {
+    "text": "正在接入「北部禁区」区域信号……"
+   }
+  }
+ ],
+ "downloadEnable": true,
+ "coverImageId": "6a56023a7495486f8405df9b",
+ "tagIds": [
+  297
+ ],
+ "timestamp": "1784026817",
+ "ipLocation": "上海",
+ "latestReplyAtTs": "1784337049",
+ "userId": "131",
+ "publishedAtTs": "1784026817"
+}

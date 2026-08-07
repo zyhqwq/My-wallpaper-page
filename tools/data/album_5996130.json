@@ -1,0 +1,241 @@
+{
+ "id": "5996130",
+ "viewKind": 3,
+ "gameId": 3,
+ "cateId": 12,
+ "status": 1,
+ "title": "【塔卫二干员影像】",
+ "imageList": [
+  {
+   "id": "6a57506768cdea4a26484ea2",
+   "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a57506768cdea4a26484ea2_0095c241.webp",
+   "width": "4096",
+   "height": "1716",
+   "size": "207008",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a57506768cdea4a26484ea2_0095c241.webp",
+     "width": "4096",
+     "height": "1716",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a57506768cdea4a26484ea2_0095c241.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "274",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a57506768cdea4a26484ea2_0095c241.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "588",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a57506768cdea4a26484ea2_0095c241.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "182",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a57506768cdea4a26484ea2_0095c241.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1404",
+     "height": "588",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  },
+  {
+   "id": "6a575067278e43d09a4a9b70",
+   "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575067278e43d09a4a9b70_004865de.webp",
+   "width": "4096",
+   "height": "1716",
+   "size": "577162",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575067278e43d09a4a9b70_004865de.webp",
+     "width": "4096",
+     "height": "1716",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575067278e43d09a4a9b70_004865de.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "274",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575067278e43d09a4a9b70_004865de.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "588",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575067278e43d09a4a9b70_004865de.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "182",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575067278e43d09a4a9b70_004865de.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1404",
+     "height": "588",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  },
+  {
+   "id": "6a575067278e43d09a4a9b71",
+   "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575067278e43d09a4a9b71_96d20048.webp",
+   "width": "4096",
+   "height": "1716",
+   "size": "813650",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575067278e43d09a4a9b71_96d20048.webp",
+     "width": "4096",
+     "height": "1716",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575067278e43d09a4a9b71_96d20048.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "274",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575067278e43d09a4a9b71_96d20048.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "588",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575067278e43d09a4a9b71_96d20048.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "182",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a575067278e43d09a4a9b71_96d20048.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1404",
+     "height": "588",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  },
+  {
+   "id": "6a57506468e6358adf7c4644",
+   "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a57506468e6358adf7c4644_004865de.webp",
+   "width": "4096",
+   "height": "1716",
+   "size": "109916",
+   "format": "webp",
+   "kind": "static",
+   "description": "",
+   "infos": [
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a57506468e6358adf7c4644_004865de.webp",
+     "width": "4096",
+     "height": "1716",
+     "format": "webp",
+     "kind": "",
+     "style": "origin"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a57506468e6358adf7c4644_004865de.webp?x-oss-process=style/halfScreen",
+     "width": "655",
+     "height": "274",
+     "format": "webp",
+     "kind": "",
+     "style": "halfScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a57506468e6358adf7c4644_004865de.webp?x-oss-process=style/fullScreen",
+     "width": "1404",
+     "height": "588",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a57506468e6358adf7c4644_004865de.webp?x-oss-process=style/thirdScreen",
+     "width": "436",
+     "height": "182",
+     "format": "webp",
+     "kind": "",
+     "style": "thirdScreen"
+    },
+    {
+     "url": "https://bbs.hycdn.cn/image/common/20260715/131/6a57506468e6358adf7c4644_004865de.webp?x-oss-process=style/fullScreenLandscape",
+     "width": "1404",
+     "height": "588",
+     "format": "webp",
+     "kind": "",
+     "style": "fullScreenLandscape"
+    }
+   ],
+   "isAIGC": false
+  }
+ ],
+ "videoList": [],
+ "caption": [
+  {
+   "kind": "text",
+   "text": {
+    "text": "滴滴//新干员诀叙事影像已更新！管理员请查收૮₍ ˶ᵔᵕᵔ˶₎ა "
+   }
+  }
+ ],
+ "downloadEnable": true,
+ "coverImageId": "6a57506468e6358adf7c4644",
+ "tagIds": [
+  297
+ ],
+ "timestamp": "1784109616",
+ "ipLocation": "上海",
+ "latestReplyAtTs": "1785371033",
+ "userId": "131",
+ "publishedAtTs": "1784109616"
+}

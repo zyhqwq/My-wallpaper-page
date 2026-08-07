@@ -651,22 +651,42 @@
 
     <script>
     /* ============================================================
-图片数据存储于本仓库 images/thumb/ (缩略图) 与 images/original/ (原图)
-       源文件为 /images/ 下按时间排序的 11 张真实图片, 已通过脚本统一裁剪命名。
-       title/category/tags 目前为占位元数据, 请逐张自行核改为真实描述。
+图片数据来源: 森空岛主页相册「Delta 勘探实录」(按地区分类) 与「塔卫二干员影像」(干员分类)
+       原图 images/original/*.webp (零压缩), 缩略图 images/thumb/*.webp (600px 等比例不裁剪)
+       分类: 干员 / Delta 勘探实录 / 应龙关 / 北部禁区 / 试验园区 / 藏剑谷 / 首墩
        ============================================================ */
     var IMAGES = [
-        { id: 1,  title: "壁纸 01", category: "风景", tags: ["4K","精选"], thumbnailUrl: "images/thumb/photo1.jpg",  originalUrl: "images/original/photo1.jpg",  source: "个人摄影", dateAdded: "2026-08-07" },
-        { id: 2,  title: "壁纸 02", category: "人像", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo2.jpg",  originalUrl: "images/original/photo2.jpg",  source: "个人摄影", dateAdded: "2026-08-06" },
-        { id: 3,  title: "壁纸 03", category: "城市", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo3.jpg",  originalUrl: "images/original/photo3.jpg",  source: "个人摄影", dateAdded: "2026-08-05" },
-        { id: 4,  title: "壁纸 04", category: "静物", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo4.jpg",  originalUrl: "images/original/photo4.jpg",  source: "个人摄影", dateAdded: "2026-08-04" },
-        { id: 5,  title: "壁纸 05", category: "风景", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo5.jpg",  originalUrl: "images/original/photo5.jpg",  source: "个人摄影", dateAdded: "2026-08-03" },
-        { id: 6,  title: "壁纸 06", category: "人像", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo6.jpg",  originalUrl: "images/original/photo6.jpg",  source: "个人摄影", dateAdded: "2026-08-02" },
-        { id: 7,  title: "壁纸 07", category: "城市", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo7.jpg",  originalUrl: "images/original/photo7.jpg",  source: "个人摄影", dateAdded: "2026-08-01" },
-        { id: 8,  title: "壁纸 08", category: "静物", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo8.jpg",  originalUrl: "images/original/photo8.jpg",  source: "个人摄影", dateAdded: "2026-07-31" },
-        { id: 9,  title: "壁纸 09", category: "风景", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo9.jpg",  originalUrl: "images/original/photo9.jpg",  source: "个人摄影", dateAdded: "2026-07-30" },
-        { id: 10, title: "壁纸 10", category: "人像", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo10.jpg", originalUrl: "images/original/photo10.jpg", source: "个人摄影", dateAdded: "2026-07-29" },
-        { id: 11, title: "壁纸 11", category: "城市", tags: ["4K","精选"],   thumbnailUrl: "images/thumb/photo11.jpg", originalUrl: "images/original/photo11.jpg", source: "个人摄影", dateAdded: "2026-07-28" }
+        { id: 1, title: "Delta 勘探实录 01", category: "Delta 勘探实录", tags: ["Delta 勘探实录","勘探"], thumbnailUrl: "images/thumb/photo1.webp", originalUrl: "images/original/photo1.webp", source: "来自森空岛", dateAdded: "2026-08-07" },
+        { id: 2, title: "Delta 勘探实录 02", category: "Delta 勘探实录", tags: ["Delta 勘探实录","勘探"], thumbnailUrl: "images/thumb/photo2.webp", originalUrl: "images/original/photo2.webp", source: "来自森空岛", dateAdded: "2026-08-06" },
+        { id: 3, title: "Delta 勘探实录 03", category: "Delta 勘探实录", tags: ["Delta 勘探实录","勘探"], thumbnailUrl: "images/thumb/photo3.webp", originalUrl: "images/original/photo3.webp", source: "来自森空岛", dateAdded: "2026-08-05" },
+        { id: 4, title: "Delta 勘探实录 04", category: "Delta 勘探实录", tags: ["Delta 勘探实录","勘探"], thumbnailUrl: "images/thumb/photo4.webp", originalUrl: "images/original/photo4.webp", source: "来自森空岛", dateAdded: "2026-08-04" },
+        { id: 5, title: "北部禁区 01", category: "北部禁区", tags: ["北部禁区","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo5.webp", originalUrl: "images/original/photo5.webp", source: "来自森空岛", dateAdded: "2026-08-03" },
+        { id: 6, title: "北部禁区 02", category: "北部禁区", tags: ["北部禁区","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo6.webp", originalUrl: "images/original/photo6.webp", source: "来自森空岛", dateAdded: "2026-08-02" },
+        { id: 7, title: "北部禁区 03", category: "北部禁区", tags: ["北部禁区","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo7.webp", originalUrl: "images/original/photo7.webp", source: "来自森空岛", dateAdded: "2026-08-01" },
+        { id: 8, title: "北部禁区 04", category: "北部禁区", tags: ["北部禁区","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo8.webp", originalUrl: "images/original/photo8.webp", source: "来自森空岛", dateAdded: "2026-07-31" },
+        { id: 9, title: "北部禁区 05", category: "北部禁区", tags: ["北部禁区","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo9.webp", originalUrl: "images/original/photo9.webp", source: "来自森空岛", dateAdded: "2026-07-30" },
+        { id: 10, title: "北部禁区 06", category: "北部禁区", tags: ["北部禁区","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo10.webp", originalUrl: "images/original/photo10.webp", source: "来自森空岛", dateAdded: "2026-07-29" },
+        { id: 11, title: "应龙关 01", category: "应龙关", tags: ["应龙关","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo11.webp", originalUrl: "images/original/photo11.webp", source: "来自森空岛", dateAdded: "2026-07-28" },
+        { id: 12, title: "应龙关 02", category: "应龙关", tags: ["应龙关","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo12.webp", originalUrl: "images/original/photo12.webp", source: "来自森空岛", dateAdded: "2026-07-27" },
+        { id: 13, title: "应龙关 03", category: "应龙关", tags: ["应龙关","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo13.webp", originalUrl: "images/original/photo13.webp", source: "来自森空岛", dateAdded: "2026-07-26" },
+        { id: 14, title: "应龙关 04", category: "应龙关", tags: ["应龙关","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo14.webp", originalUrl: "images/original/photo14.webp", source: "来自森空岛", dateAdded: "2026-07-25" },
+        { id: 15, title: "应龙关 05", category: "应龙关", tags: ["应龙关","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo15.webp", originalUrl: "images/original/photo15.webp", source: "来自森空岛", dateAdded: "2026-07-24" },
+        { id: 16, title: "应龙关 06", category: "应龙关", tags: ["应龙关","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo16.webp", originalUrl: "images/original/photo16.webp", source: "来自森空岛", dateAdded: "2026-07-23" },
+        { id: 17, title: "藏剑谷 01", category: "藏剑谷", tags: ["藏剑谷","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo17.webp", originalUrl: "images/original/photo17.webp", source: "来自森空岛", dateAdded: "2026-07-22" },
+        { id: 18, title: "藏剑谷 02", category: "藏剑谷", tags: ["藏剑谷","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo18.webp", originalUrl: "images/original/photo18.webp", source: "来自森空岛", dateAdded: "2026-07-21" },
+        { id: 19, title: "藏剑谷 03", category: "藏剑谷", tags: ["藏剑谷","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo19.webp", originalUrl: "images/original/photo19.webp", source: "来自森空岛", dateAdded: "2026-07-20" },
+        { id: 20, title: "藏剑谷 04", category: "藏剑谷", tags: ["藏剑谷","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo20.webp", originalUrl: "images/original/photo20.webp", source: "来自森空岛", dateAdded: "2026-07-19" },
+        { id: 21, title: "试验园区 01", category: "试验园区", tags: ["试验园区","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo21.webp", originalUrl: "images/original/photo21.webp", source: "来自森空岛", dateAdded: "2026-07-18" },
+        { id: 22, title: "试验园区 02", category: "试验园区", tags: ["试验园区","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo22.webp", originalUrl: "images/original/photo22.webp", source: "来自森空岛", dateAdded: "2026-07-17" },
+        { id: 23, title: "试验园区 03", category: "试验园区", tags: ["试验园区","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo23.webp", originalUrl: "images/original/photo23.webp", source: "来自森空岛", dateAdded: "2026-07-16" },
+        { id: 24, title: "试验园区 04", category: "试验园区", tags: ["试验园区","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo24.webp", originalUrl: "images/original/photo24.webp", source: "来自森空岛", dateAdded: "2026-07-15" },
+        { id: 25, title: "试验园区 05", category: "试验园区", tags: ["试验园区","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo25.webp", originalUrl: "images/original/photo25.webp", source: "来自森空岛", dateAdded: "2026-07-14" },
+        { id: 26, title: "试验园区 06", category: "试验园区", tags: ["试验园区","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo26.webp", originalUrl: "images/original/photo26.webp", source: "来自森空岛", dateAdded: "2026-07-13" },
+        { id: 27, title: "首墩 01", category: "首墩", tags: ["首墩","Delta 勘探实录"], thumbnailUrl: "images/thumb/photo27.webp", originalUrl: "images/original/photo27.webp", source: "来自森空岛", dateAdded: "2026-07-12" },
+        { id: 28, title: "干员 01", category: "干员", tags: ["干员影像","终末地"], thumbnailUrl: "images/thumb/photo28.webp", originalUrl: "images/original/photo28.webp", source: "来自森空岛", dateAdded: "2026-07-11" },
+        { id: 29, title: "干员 02", category: "干员", tags: ["干员影像","终末地"], thumbnailUrl: "images/thumb/photo29.webp", originalUrl: "images/original/photo29.webp", source: "来自森空岛", dateAdded: "2026-07-10" },
+        { id: 30, title: "干员 03", category: "干员", tags: ["干员影像","终末地"], thumbnailUrl: "images/thumb/photo30.webp", originalUrl: "images/original/photo30.webp", source: "来自森空岛", dateAdded: "2026-07-09" },
+        { id: 31, title: "干员 04", category: "干员", tags: ["干员影像","终末地"], thumbnailUrl: "images/thumb/photo31.webp", originalUrl: "images/original/photo31.webp", source: "来自森空岛", dateAdded: "2026-07-08" }
     ];
 
     /* ============================================================
