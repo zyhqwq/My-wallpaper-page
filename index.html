@@ -462,6 +462,106 @@
             animation: spin 0.8s linear infinite;
         }
 
+        .theme-toggle {
+            padding: 6px 14px;
+            font-size: 13px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        /* =====================================================
+           黑夜模式 (body.dark)
+           ===================================================== */
+        body.dark {
+            background: #000000;
+            color: #FFFFFF;
+        }
+        body.dark header {
+            border-bottom-color: #FFFFFF;
+        }
+        body.dark .tag-bar,
+        body.dark .result-info {
+            border-top-color: #FFFFFF;
+        }
+        body.dark .site-title span {
+            border-color: #FFFFFF;
+        }
+        body.dark .invert {
+            background: #000000;
+            color: #FFFFFF;
+            border-color: #FFFFFF;
+        }
+        body.dark .invert:hover {
+            background: #FFFFFF;
+            color: #000000;
+        }
+        body.dark .filter-btn.active,
+        body.dark .tag-btn.active {
+            background: #FFFFFF;
+            color: #000000;
+        }
+        body.dark .card {
+            background: #000000;
+            color: #FFFFFF;
+            border-color: #FFFFFF;
+        }
+        body.dark .card:hover {
+            background: #FFFFFF;
+            color: #000000;
+        }
+        body.dark .card:hover .card-source {
+            color: #000000;
+        }
+        body.dark .spinner::before {
+            border-color: #FFFFFF;
+            border-top-color: transparent;
+        }
+        body.dark .modal-close {
+            background: #000000;
+            color: #FFFFFF;
+            border-color: #FFFFFF;
+        }
+        body.dark .modal-close:hover {
+            background: #FFFFFF;
+            color: #000000;
+        }
+        body.dark .modal-info-box {
+            background: #000000;
+            color: #FFFFFF;
+            border-color: #FFFFFF;
+        }
+        body.dark .modal-info-box a.modal-source-link {
+            color: #FFFFFF;
+        }
+        body.dark .modal-tags .tag {
+            background: #000000;
+            color: #FFFFFF;
+            border-color: #FFFFFF;
+        }
+        body.dark .modal-tags .tag:hover,
+        body.dark .modal-tags .tag.active {
+            background: #FFFFFF;
+            color: #000000;
+        }
+        body.dark .action-btn {
+            background: #000000;
+            color: #FFFFFF;
+            border-color: #FFFFFF;
+        }
+        body.dark .action-btn:hover {
+            background: #FFFFFF;
+            color: #000000;
+        }
+        body.dark .footer-link,
+        body.dark .footer-license,
+        body.dark .header-license {
+            color: #FFFFFF;
+        }
+        body.dark .page-info,
+        body.dark .card-source {
+            color: #CCCCCC;
+        }
+
         /* 弹窗内标签: 可点击按钮 (白底黑字, 悬停反转, 选中黑底白字) */
         .modal-tags {
             display: flex;
@@ -566,6 +666,7 @@
         <div class="container header-inner">
             <div class="site-title"><span>壁纸与美图</span></div>
             <p class="header-license">壁纸来源于森空岛 (SKLAND) 以及明日方舟：终末地 (Endfield) 官方网站，所有壁纸版权及最终解释权归鹰角网络 (HYPERGRYPH) 及相关著作权人所有。</p>
+            <button type="button" class="theme-toggle invert" id="themeToggle">黑夜模式</button>
             <!-- 分类导航：运行时由 JavaScript 自动填充 -->
             <nav class="cate-nav" id="categoryNav" aria-label="分类导航"></nav>
         </div>
@@ -1238,6 +1339,33 @@
     /* 启动 */
     initFromURL();
     reRender();
+
+    /* ============================================================
+       黑夜模式切换
+       ============================================================ */
+    var themeToggle = document.getElementById("themeToggle");
+    var DARK_KEY = "wallpaper-theme";
+
+    function applyTheme(dark) {
+        document.body.classList.toggle("dark", dark);
+        themeToggle.textContent = dark ? "白天模式" : "黑夜模式";
+    }
+
+    themeToggle.addEventListener("click", function () {
+        var dark = !document.body.classList.contains("dark");
+        try {
+            localStorage.setItem(DARK_KEY, dark ? "dark" : "light");
+        } catch (e) {}
+        applyTheme(dark);
+    });
+
+    (function initTheme() {
+        var saved = null;
+        try {
+            saved = localStorage.getItem(DARK_KEY);
+        } catch (e) {}
+        applyTheme(saved === "dark");
+    })();
     </script>
 </body>
 </html>
