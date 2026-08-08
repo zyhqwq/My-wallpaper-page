@@ -630,17 +630,9 @@
         </button>
 
         <div class="modal-body">
-            <!-- 图片上方: 标题 -->
-            <div class="modal-head">
-                <h2 class="modal-title" id="modalTitle"></h2>
-            </div>
-
             <div class="modal-main">
-                <!-- 左侧: 标题 / 作者 / 日期 / 分类 / 标签 / 来源 (白底黑字方框, 标签可点击) -->
+                <!-- 左侧: 作者 / 日期 / 分类 / 标签 / 来源 (白底黑字方框, 标签可点击) -->
                 <aside class="modal-side-info">
-                    <div class="modal-info-box">
-                        <span class="modal-label">标题：</span><span id="modalTitleBox"></span>
-                    </div>
                     <div class="modal-info-box" id="modalAuthorBox">
                         <span class="modal-label">作者：</span><span id="modalAuthor"></span>
                     </div>
@@ -922,8 +914,6 @@
     var modalOverlay = document.getElementById("modalOverlay");
     var modalImg = document.getElementById("modalImg");
     var modalImgSpinner = document.getElementById("modalImgSpinner");
-    var modalTitle = document.getElementById("modalTitle");
-    var modalTitleBox = document.getElementById("modalTitleBox");
     var modalAuthorBox = document.getElementById("modalAuthorBox");
     var modalAuthor = document.getElementById("modalAuthor");
     var modalCategory = document.getElementById("modalCategory");
@@ -1167,8 +1157,6 @@
     function openModal(item) {
         currentItem = item;
 
-        modalTitle.textContent = item.title;
-        modalTitleBox.textContent = item.title;
         modalCategory.textContent = item.category;
         if (item.author) {
             modalAuthorBox.style.display = "";
